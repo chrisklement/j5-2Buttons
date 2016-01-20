@@ -1,5 +1,5 @@
 // Let's create a new socket and assign it to a local variable.
-$(document).ready(function () {
+$(document).ready(function() {
   var socket = new io();
   var toggleOne = true;
   var toggleTwo = true;
@@ -10,35 +10,41 @@ $(document).ready(function () {
   });
 
   // Attach an event to the click event of document's button.
-  $('#sendit').click(function () {
+  $('#sendit').click(function() {
     var message = 'The time is now ' + new Date();
     // console.log('Sending the message "' + message + '"');
     socket.send(message);
   });
 
   // Create a handler for when a message arrives from the server.
-  socket.on('message', function (messageOne) {
+  socket.on('message', function(msg) {
     // When a message arrives, toggle the body color.
     console.log(messageOne);
-    if (toggleOne === true) {
-      $('body').css('background-color', 'black');
-      toggleOne = !toggleOne;
-    } else {
-      $('body').css('background-color', 'white');
-      toggleOne = !toggleOne;
+    if (msg === 'buttonOne') {
+
+      if (toggleTwo === true) {
+        $('h1').css('color', 'red');
+        toggleTwo = !toggleTwo;
+      } else {
+        $('h1').css('color', 'blue');
+        toggleTwo = !toggleTwo;
+      }
+
+    } else if (msg === 'buttonTwo') {
+
+      if (toggleOne === true) {
+        $('body').css('background-color', 'black');
+        toggleOne = !toggleOne;
+      } else {
+        $('body').css('background-color', 'white');
+        toggleOne = !toggleOne;
+      }
     }
   });
 
   // Create a handler for when a message arrives from the server.
-  socket.on('message', function (messageTwo) {
+  socket.on('message', function(messageTwo) {
     // When a message arrives, toggle the body color.
     console.log(messageTwo);
-    if (toggleTwo === true) {
-      $('h1').css('color', 'red');
-      toggleTwo = !toggleTwo;
-    } else {
-      $('h1').css('color', 'blue');
-      toggleTwo = !toggleTwo;
-    }
   });
 });
