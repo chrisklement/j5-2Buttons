@@ -19,7 +19,7 @@ $(document).ready(function() {
   // Create a handler for when a message arrives from the server.
   socket.on('message', function(msg) {
     // When a message arrives, toggle the body color.
-    console.log(messageOne);
+    // console.log(messageOne);
     if (msg === 'buttonOne') {
 
       if (toggleTwo === true) {
@@ -40,11 +40,5 @@ $(document).ready(function() {
         toggleOne = !toggleOne;
       }
     }
-  });
-
-  // Create a handler for when a message arrives from the server.
-  socket.on('message', function(messageTwo) {
-    // When a message arrives, toggle the body color.
-    console.log(messageTwo);
   });
 });
